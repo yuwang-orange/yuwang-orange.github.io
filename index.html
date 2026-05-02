@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joe Wang | Cornell Economics PhD</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fafaf8;
+            --text: #2c2c2c;
+            --text-secondary: #555;
+            --accent: #1a5276;
+            --accent-hover: #0e3a54;
+            --link: #1a5276;
+            --border: #ddd;
+            --section-title: #1a5276;
+            --tag-bg: #eef3f7;
+            --tag-text: #1a5276;
+            --card-bg: #fff;
+            --max-width: 860px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* Navigation */
+        nav {
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav .nav-inner {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            height: 56px;
+        }
+
+        nav a {
+            font-family: 'Source Sans 3', sans-serif;
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            transition: color 0.2s;
+            padding: 0.25rem 0;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--accent);
+        }
+
+        /* Main layout */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Profile section */
+        .profile {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .profile-sidebar {
+            text-align: center;
+        }
+
+        .profile-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--border);
+            background: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            overflow: hidden;
+        }
+
+        .profile-photo-placeholder {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 3px solid var(--border);
+            background: linear-gradient(135deg, #e8e8e8, #d0d0d0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: #999;
+            font-size: 0.8rem;
+        }
+
+        .sidebar-name {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.25rem;
+        }
+
+        .sidebar-title {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+        }
+
+        .sidebar-info {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .sidebar-info a {
+            color: var(--link);
+            text-decoration: none;
+        }
+
+        .sidebar-info a:hover {
+            text-decoration: underline;
+        }
+
+        .sidebar-icon {
+            display: inline-block;
+            width: 16px;
+            margin-right: 4px;
+            text-align: center;
+        }
+
+        /* Main content */
+        .profile-main h1 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .section-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--section-title);
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .profile-main p {
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .profile-main a {
+            color: var(--link);
+            text-decoration: none;
+        }
+
+        .profile-main a:hover {
+            text-decoration: underline;
+        }
+
+        /* Research interests tags */
+        .interests {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            background: var(--tag-bg);
+            color: var(--tag-text);
+            padding: 0.3rem 0.85rem;
+            border-radius: 4px;
+            font-size: 0.88rem;
+            font-weight: 500;
+        }
+
+        /* Publications */
+        .pub-list {
+            list-style: none;
+            margin-top: 0.5rem;
+        }
+
+        .pub-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .pub-item:last-child {
+            border-bottom: none;
+        }
+
+        .pub-title {
+            font-weight: 600;
+            color: var(--text);
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .pub-title a {
+            color: var(--link);
+            text-decoration: none;
+        }
+
+        .pub-title a:hover {
+            text-decoration: underline;
+        }
+
+        .pub-authors {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.15rem;
+        }
+
+        .pub-venue {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .pub-year {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Contact */
+        .contact-info {
+            line-height: 2;
+        }
+
+        /* CV link */
+        .cv-link {
+            display: inline-block;
+            margin-top: 0.5rem;
+            font-weight: 500;
+            color: var(--link);
+            text-decoration: none;
+            border-bottom: 1px solid var(--link);
+            padding-bottom: 1px;
+        }
+
+        .cv-link:hover {
+            color: var(--accent-hover);
+            border-color: var(--accent-hover);
+        }
+
+        /* Footer */
+        footer {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #aaa;
+            border-top: 1px solid var(--border);
+        }
+
+        /* Responsive */
+        @media (max-width: 680px) {
+            .profile {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .profile-main {
+                text-align: left;
+            }
+
+            .profile-main h1 {
+                text-align: center;
+            }
+
+            .interests {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="#" class="active">Homepage</a>
+        <a href="#research">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="profile">
+
+        <!-- Sidebar -->
+        <div class="profile-sidebar">
+            <div class="profile-photo-placeholder">
+                Your Photo
+            </div>
+            <div class="sidebar-name">Joe Wang 王宇</div>
+            <div class="sidebar-title">Ph.D. in Economics</div>
+            <div class="sidebar-info">
+                <div><span class="sidebar-icon">📍</span> Orange County, CA</div>
+                <div><span class="sidebar-icon">🎓</span> Cornell University</div>
+                <div><span class="sidebar-icon">✉️</span> <a href="mailto:yuwang9908@gmail.com">Email</a></div>
+                <div><span class="sidebar-icon">🔗</span> <a href="https://linkedin.com/in/yuwang-io" target="_blank">LinkedIn</a></div>
+                <div><span class="sidebar-icon">💻</span> <a href="https://github.com/yuwang-orange" target="_blank">GitHub</a></div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="profile-main">
+
+            <h1>About Me</h1>
+
+            <p>
+                I am an Applied ML Scientist with a Ph.D. in Economics from 
+                <a href="https://www.cornell.edu/" target="_blank">Cornell University</a>, 
+                specializing in causal inference, machine learning, and LLM evaluation. 
+                My research bridges econometric methodology and modern ML systems, 
+                with applications in marketplace optimization, loss forecasting, and 
+                causal diagnostics.
+            </p>
+
+            <p>
+                Currently, I work as a Risk Quantitative Analyst at Capital One, 
+                where I build end-to-end ML pipelines for credit loss prediction 
+                and develop causal frameworks for model evaluation under distributional shift.
+            </p>
+
+            <p>
+                I am seeking Applied Scientist and Research Scientist roles 
+                in marketplace optimization, experimentation, and causal ML.
+            </p>
+
+            <a href="#" class="cv-link">📄 My CV</a>
+
+            <!-- Research Interests -->
+            <h2 class="section-title" id="research">Research Interests</h2>
+
+            <div class="interests">
+                <span class="tag">Causal Inference</span>
+                <span class="tag">Machine Learning</span>
+                <span class="tag">LLM Evaluation</span>
+                <span class="tag">Marketplace Optimization</span>
+                <span class="tag">Heterogeneous Treatment Effects</span>
+                <span class="tag">Time Series Forecasting</span>
+            </div>
+
+            <p>
+                My work centers on two themes: (1) applying causal inference 
+                and partial identification methods to ML systems — including 
+                stress testing, sensitivity analysis, and uncertainty decomposition; 
+                and (2) bridging econometric frameworks with production ML pipelines 
+                for forecasting, experimentation, and decision-making at scale.
+            </p>
+
+            <!-- Publications -->
+            <h2 class="section-title" id="publications">Publications &amp; Preprints</h2>
+
+            <ul class="pub-list">
+                <li class="pub-item">
+                    <div class="pub-title">
+                        <a href="https://arxiv.org/abs/2603.07438" target="_blank">
+                            Machine Learning for Stress Testing: Uncertainty Decomposition in Causal Panel Prediction
+                        </a>
+                    </div>
+                    <div class="pub-authors">Yu Wang, Xiangchen Liu, Shuofeng Li</div>
+                    <div class="pub-venue">arXiv preprint, 2026</div>
+                </li>
+
+                <li class="pub-item">
+                    <div class="pub-title">
+                        <a href="https://arxiv.org/abs/2601.17527" target="_blank">
+                            Bridging Expectation Signals: LLM-Based Experiments and a Behavioral Kalman Filter Framework
+                        </a>
+                    </div>
+                    <div class="pub-authors">Yu Wang, Xiangchen Liu</div>
+                    <div class="pub-venue">FLAIRS-39, 2026</div>
+                </li>
+
+                <li class="pub-item">
+                    <div class="pub-title">
+                        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6078328" target="_blank">
+                            Misallocation with Capital Heterogeneity
+                        </a>
+                    </div>
+                    <div class="pub-authors">Yu Wang, Zebang Xu</div>
+                    <div class="pub-venue">Available at SSRN, 2025</div>
+                </li>
+            </ul>
+
+            <!-- Contact -->
+            <h2 class="section-title" id="contact">Contact</h2>
+
+            <div class="contact-info">
+                <p>
+                    ✉️ <a href="mailto:yuwang9908@gmail.com">yuwang9908@gmail.com</a><br>
+                    🔗 <a href="https://linkedin.com/in/yuwang-io" target="_blank">linkedin.com/in/yuwang-io</a><br>
+                    💻 <a href="https://github.com/yuwang-orange" target="_blank">github.com/yuwang-orange</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<footer>
+    &copy; 2026 Joe Wang. Hosted on GitHub Pages.
+</footer>
+
+</body>
+</html>
